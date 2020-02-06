@@ -55,11 +55,10 @@
   <h1>Hello!</h1>
   <button on:click={handleClick}>Try fetshing a note</button>
   {#await promise}
-    <p>...waiting</p>
+    <p>...waiting for note to load</p>
   {:then note}
-    <p>The number is {note}</p>
+    <p>Note: {note.note}</p>
   {:catch error}
     <p style="color: red">{error.message}</p>
   {/await}
-  Some CORS shenanigans right there 👆
 </main>
