@@ -20,8 +20,8 @@
     );
 
     const text = await response.text();
-    console.log(response);
-    return JSON.parse(text).note;
+    console.log(text);
+    return JSON.parse(text);
   }
 
   function handleClick() {
@@ -57,7 +57,9 @@
   {#await promise}
     <p>...waiting for note to load</p>
   {:then note}
-    <p>Note: {note.note}</p>
+    <h3>Note</h3>
+    <p>{note.note}</p>
+    <p>Tags: {note.tags}</p>
   {:catch error}
     <p style="color: red">{error.message}</p>
   {/await}

@@ -19,11 +19,12 @@ export const getNoteById = functions.https.onRequest(
         response.set("Access-Control-Allow-Methods", "GET");
         response.set("Access-Control-Allow-Headers", "Content-Type");
         response.set("Access-Control-Max-Age", "3600");
-        response.status(204).send(data);
+        response.status(200).send(data);
       } else {
-        throw new Error(
-          "Request Headers doesn't fit the server response schema",
-        );
+        response.status(200).send(data);
+        // throw new Error(
+        //   "Request Headers doesn't fit the server response schema",
+        // );
       }
     } catch (error) {
       console.log(error);
