@@ -1,32 +1,21 @@
 <script>
-  let promise = fetchNote();
+  import ApolloClient, {gql} from "apollo-boost";
+  import { setClient, getClient, query } from "svelte-apollo";
+  import Note from "./Note.svelte"
+  import { GETNOTES } from "./getnotes.js";
 
-  async function fetchNote() {
-    const response = await fetch(
-      `https://us-central1-pinetype.cloudfunctions.net/getNoteById?noteId=zo9sSsJPnjW2qqMmDeYK`,
-      {
-        method: "GET", // *GET, POST, PUT, DELETE, etc.
-        mode: "cors", // no-cors, *cors, same-origin
-        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: "omit", // include, *same-origin, omit
-        headers: {
-          "Content-Type": "application/json"
-          // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        redirect: "follow", // manual, *follow, error
-        referrerPolicy: "no-referrer" // no-referrer, *client
-        // body: JSON.stringify(data) // body data type must match "Content-Type" header
-      }
-    );
+  const client = new ApolloClient({
+    uri: "https://us-central1-pinetype.cloudfunctions.net/api",
+    onError: ({ networkError, graphQLErrors }) => {
+      console.log("graphQLErrors", graphQLErrors);
+      console.log("networkError", networkError);
+    }
+  });
 
-    const text = await response.text();
-    console.log(response);
-    return JSON.parse(text).note;
-  }
+  setClient(client);
 
-  function handleClick() {
-    promise = fetchNote();
-  }
+  const fetchNotes = query(client, { query: GETNOTES });
+
 </script>
 
 <style>
@@ -53,11 +42,10 @@
 
 <main>
   <h1>Hello!</h1>
-  <button on:click={handleClick}>Try fetshing a note</button>
-  {#await promise}
+  {#await $fetchNotes}
     <p>...waiting for note to load</p>
   {:then note}
-    <p>Note: {note.note}</p>
+    <Note noteData={note} />
   {:catch error}
     <p style="color: red">{error.message}</p>
   {/await}
