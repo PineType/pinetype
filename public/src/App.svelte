@@ -1,5 +1,5 @@
 <script>
-  import ApolloClient, {gql} from "apollo-boost";
+  import ApolloClient, {gql, HttpLink} from "apollo-boost";
   import { setClient, getClient, query } from "svelte-apollo";
   import Note from "./Note.svelte"
   import { createAuth } from './auth';
@@ -41,13 +41,14 @@
     },
     fetchOptions: {
       mode: 'cors',
+      credentials: true,
       headers: {
         "Access-Control-Allow-Credentials" : true,
-        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Origin  ": "*",
         "Content-Type": "application/graphql",
         "authorization": `Bearer ${authToken}`
       }
-  },
+    },
   });
 
   setClient(client);

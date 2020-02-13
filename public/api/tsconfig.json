@@ -11,6 +11,6 @@
   },
   "compileOnSave": true,
   "include": [
-    "src"
+    "src", "_utils/graphql-server.ts", "index.ts", "_utils/mongoConfig.ts", "_utils/resolvers.ts", "_utils/schema.ts"
   ]
 }

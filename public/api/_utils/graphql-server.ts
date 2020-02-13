@@ -1,7 +1,7 @@
 import {ApolloServer } from 'apollo-server-cloud-functions';
 const jwt = require('jsonwebtoken');
 const jwksClient = require('jwks-rsa');
-require('./mongoConfig');
+// require('./mongoConfig');
 
 import schema from './schema';
 import resolvers from './resolvers';
@@ -28,7 +28,7 @@ const options = {
     resolvers,
     context: async ({ req, res }) => {
       const token = req.header.authorization;
-      console.log(req.headers, token);
+      console.log(req.header.authorization);
       const user = new Promise((resolve: any, reject: any) => {
         jwt.verify(token, getKey, options, (err: any, decoded: any) => {
           if(err){
@@ -38,10 +38,11 @@ const options = {
         })
 
       })
-      return { user,
+      return {
         headers: req.headers,
         req,
-        res };
+        res,
+        user };
     },
     introspection: true,
     playground: true,
