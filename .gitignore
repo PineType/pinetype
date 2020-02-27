@@ -7,8 +7,10 @@ yarn-error.log*
 firebase-debug.log*
 
 # Firebase cache
-.firebase/
+.node_modules
 lib/
+
+/functions/*.js
 
 # Firebase config
 
@@ -66,3 +68,5 @@ node_modules/
 .env
 
 
+
+.now
