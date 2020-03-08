@@ -8,9 +8,9 @@
   // Go to Auth0 to get the values and set everything up.
   // Make sure all callback urls are set correctly.
   const config = {
-    domain: 'auth.rosnovsky.us',
-    client_id: 'PeGiv5sGXsHT7WxmQ394C6rQMp96HrLq',
-    redirectUri: 'http://localhost:3000',
+    domain: 'pinetype.auth0.com',
+    client_id: 'KLhLbHRtOApcMgD3nJIFsghshfr1aB7l',
+    redirectUri: 'https://pinetype-test.netlify.com',
     responseType: "token id_token",
     scope: "openid profile email",
   };
@@ -34,7 +34,7 @@
   };
 
   const client = new ApolloClient({
-    uri: "http://localhost:3000/api/gql",
+    uri: "https://pinetype-test.netlify.com/.netlify/functions/mongodb-graphql",
     onError: ({ networkError, graphQLErrors }) => {
       console.log("graphQLErrors", graphQLErrors);
       console.log("networkError", networkError);
