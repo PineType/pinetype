@@ -78,7 +78,7 @@ function createAuth(config) {
   const logout = () => {
     auth0.logout({
       clientID: "KLhLbHRtOApcMgD3nJIFsghshfr1aB7l",
-      returnTo: "hhttps://pinetype-test.netlify.com"
+      returnTo: "https://pinetype-test.netlify.com"
     });
   };
 
