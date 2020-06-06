@@ -4,7 +4,7 @@
   "description": "Pinetype is an educational project to help all involved learn how to build an app from scratch, with no guidance or tutorials to follow.",
   "main": "index.js",
   "dependencies": {
-    "apollo-server-lambda": "^2.10.1",
+    "apollo-server-lambda": "^2.14.2",
     "apollo-server-micro": "^2.10.1",
     "encoding": "^0.1.12",
     "graphql": "^14.6.0",
